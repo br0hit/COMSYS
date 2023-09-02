@@ -1,18 +1,16 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from xgboost import XGBRegressor
+from sklearn.ensemble import RandomForestRegressor  # Import Random Forest
 from sklearn.metrics import mean_squared_error
 
 # Load datasets
+train_data = pd.read_csv("../data/train.csv")
+test_data = pd.read_csv("../data/test.csv")
 
-train_data = pd.read_csv("../data/train_freqEncoded.csv")
-test_data = pd.read_csv("../data/test_full_freqEncoded.csv")
-save_path = "predictions_full.csv"
+train_data.dropna(inplace=True)
+test_data.dropna(inplace=True)
 
-# train_data = pd.read_csv("../data/train.csv")
-# test_data = pd.read_csv("../data/test_missing.csv")
-# save_path = "predictions.csv"
-
+save_path = "rf.csv"
 
 
 # Feature selection
@@ -38,10 +36,7 @@ selected_features = [
     'Tackles', 
     'Value at beginning of 2020/21 season', 
     'Value at beginning of 2021/22 season', 
-    'Value at beginning of 2022/23 season',
-    
-    'Country_encoded'
-
+    'Value at beginning of 2022/23 season'
 ]
 
 # # Convert 'Country' column to one-hot encoding
@@ -57,7 +52,7 @@ y_train = train_data['Value at beginning of 2023/24 season']
 X_test = test_data[selected_features]
 
 # Model selection and training
-model = XGBRegressor()  # XGBoost model
+model = RandomForestRegressor(n_estimators=100, random_state=42)  # Random Forest model with 100 trees
 model.fit(X_train, y_train)
 
 # Model prediction
