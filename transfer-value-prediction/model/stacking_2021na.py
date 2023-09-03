@@ -8,10 +8,10 @@ from sklearn.linear_model import ElasticNet, BayesianRidge
 from xgboost import XGBRegressor
 
 # Load datasets
-train_data = pd.read_csv("../data/train_2021na.csv_onehotEncoded20.csv")
+train_data = pd.read_csv("../data/train_2021na.csv_onehotEncoded38.csv")
 train_data.dropna(inplace=True)
-test_data = pd.read_csv("../data/test_2021na.csv_onehotEncoded20.csv")
-save_path = "predictions_stacking_2021na.csv"
+test_data = pd.read_csv("../data/test_2021na.csv_onehotEncoded38.csv")
+save_path = "predictions_stacking_2021na_new.csv"
 
 # Feature selection
 selected_features = [
@@ -34,11 +34,11 @@ selected_features = [
     'Successful Dribbles', 
     'Touches in attacking penalty area', 
     'Tackles', 
+    'Value at beginning of 2022/23 season',
     
     # 'Value at beginning of 2020/21 season',
-     
     # 'Value at beginning of 2021/22 season', 
-    'Value at beginning of 2022/23 season',
+
     
     # 'Country_encoded'
     
@@ -56,12 +56,12 @@ selected_features = [
     
     'Country_Argentina',
     
-    'Country_Portugal',
-    'Country_Netherlands',
+    # 'Country_Portugal',
+    # 'Country_Netherlands',
     
-    'Country_Denmark',
-    'Country_Belgium',
-    'Country_Croatia',
+    # 'Country_Denmark',
+    # 'Country_Belgium',
+    # 'Country_Croatia',
     
     # 'Country_Algeria',
     # 'Country_Ghana',
