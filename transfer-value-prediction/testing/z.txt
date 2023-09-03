@@ -1,0 +1,114 @@
+Missing values train.csv: 
+
+
+****** Solo - 1647  ******
+
+Country                                 73  Solo
+Value at beginning of 2020/21 season    74  ---> 46 ( Only this value missing) + 
+Value at beginning of 2021/22 season    30  ---> 3  ( Only this value missing )
+Value at beginning of 2022/23 season     5  ---> 1  ( Only this value missing )
+dtype: int64
+
+Missing values test.csv: 
+
+Country                                 17  All Solo 
+Missing Country ids - 408, 1643, 892, 453, 764, 1696, 548, 67, 1681, 772, 170, 184, 1518, 593, 522, 309, 1456
+
+Value at beginning of 2020/2021 season    25  - 16 ( Only this value missing ) 
+Solo Missing 2020/21 ids - 1292, 438, 567, 1225, 1085, 426, 613, 237, 650, 240, 1196, 1494, 1648, 493, 620, 411
+
+Value at beginning of 2021/21 season    10  - 1 solo missing , remaining all missed along with 2020/21
+With 2020/2021 - 765, 1649, 49, 618, 694, 844, 679, 506, 420
+
+
+****** Solo - 1647  ******
+
+Value at beginning of 2022/23 season     0
+dtype: int64
+
+
+Number of unique countries: 73
+
+
+* For the missing values in both train and test set , If country data is missing, No other data is missing, If other data is missing, Country is not missing , look at results/missing_data for more details
+
+If Ridge and Lasso regression are performing well, but you still want to further improve their accuracy, there are several strategies and techniques you can consider:
+
+1. **Feature Engineering:** Explore different ways to engineer your features or create new features. Feature engineering can sometimes reveal hidden patterns in the data that can lead to better model performance.
+
+2. **Interaction Terms:** Experiment with adding interaction terms between features. These are combinations of two or more features that can capture non-linear relationships that linear models like Ridge and Lasso might miss.
+
+3. **Polynomial Features:** You can try adding polynomial features to capture non-linear relationships. For example, you can include squared or cubed versions of your existing features.
+
+4. **Outlier Detection and Handling:** Identify and handle outliers in your dataset, as outliers can sometimes negatively impact linear models. You can choose to remove outliers or transform them using robust techniques.
+
+5. **Data Preprocessing:** Ensure that your data preprocessing steps are appropriate. Scaling and normalizing features can have a significant impact on the performance of linear models. You can also explore different encoding techniques for categorical variables.
+
+6. **Regularization Strength:** Experiment with different values of the regularization strength (alpha) for Ridge and Lasso. Sometimes, fine-tuning this hyperparameter can lead to better results.
+
+7. **Cross-Validation:** Perform thorough cross-validation to assess the model's generalization performance. This can help you detect overfitting and make necessary adjustments to the model or the data.
+
+8. **Ensemble Models:** While Ridge and Lasso are linear models, you can explore the possibility of creating ensemble models. For example, you can combine multiple Ridge or Lasso models to improve predictive performance.
+
+9. **Advanced Regression Techniques:** Consider trying more advanced regression techniques such as Elastic Net regression, which combines Ridge and Lasso regularization, or Bayesian Regression, which can provide robust estimates.
+
+10. **Collect More Data:** If possible, collect more data to increase the size of your dataset. This can help linear models, especially when dealing with complex relationships.
+
+11. **Check Assumptions:** Ensure that your data meets the assumptions of linear regression, such as linearity, independence of errors, and homoscedasticity. If these assumptions are violated, it might be necessary to explore other modeling approaches.
+
+12. **Regularization Path:** Visualize the regularization path for Ridge and Lasso to understand how the coefficients change with different regularization strengths. This can provide insights into which features are important and which are not.
+
+13. **Domain Knowledge:** Utilize domain knowledge to engineer features or guide the modeling process. Understanding the problem domain can often lead to better feature selection and model choices.
+
+More Models: Consider adding more diverse models to your ensemble. For example, you could include gradient boosting machines (e.g., XGBoost, LightGBM) or other regression algorithms (e.g., SVR, k-Nearest Neighbors) to see if they contribute to better performance.
+
+Data Augmentation: If you have a limited amount of data, consider data augmentation techniques to create additional training samples.
+
+Ensemble Size: Experiment with the number of models in your ensemble. Sometimes, having more models can improve accuracy up to a point, but too many models can lead to diminishing returns or overfitting.
+
+Ensemble Weighting: Instead of equal weights for all models, you can experiment with different weightings for each model in your ensemble to give more importance to the better-performing models.
+
+Remember that there is no one-size-fits-all solution, and the effectiveness of these strategies may vary depending on the specific characteristics of your dataset. It's a good practice to experiment with different approaches and evaluate their impact on model performance through careful testing and cross-validation.
+
+
+
+
+Onehot - 50
+Best Alpha for Elastic Net: 0.01
+Best l1_ratio for Elastic Net: 0.9
+Cross-validated Elastic Net RMSE: 10.44228057733666
+
+Onehot - 20
+Best Alpha for Elastic Net: 0.01
+Best l1_ratio for Elastic Net: 0.9
+Cross-validated Elastic Net RMSE: 10.437382168723714
+
+Onehot - 50
+Best Alpha: 0.01
+Cross-validated Lasso RMSE: 10.442915793941314
+
+Onehot - 20
+Best Alpha: 0.01
+Cross-validated Lasso RMSE: 10.440064584970193
+
+Onehot - 50
+Best Alpha: 1
+Cross-validated Ridge RMSE: 10.442767062556133
+
+Onehot - 30 - Brazil, Netherlands, Portugal, Argentina
+Best Alpha: 1
+Cross-validated Ridge RMSE: 10.429519480509407
+
+Onehot - 20
+Best Alpha: 1
+Cross-validated Ridge RMSE: 10.433688439140482
+
+
+Onehot - 50
+Cross-validated Bayesian Ridge RMSE: 10.602706735256307
+
+Onehot + freq - 50
+Cross-validated Bayesian Ridge RMSE: 10.608021117895245
+
+
+**** Polynomial features doesnt help 
