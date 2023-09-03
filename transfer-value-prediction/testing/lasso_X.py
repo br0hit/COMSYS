@@ -6,7 +6,7 @@ from sklearn.linear_model import Lasso
 import matplotlib.pyplot as plt
 
 # Load datasets
-train_data = pd.read_csv("../data/train_onehotEncoded20.csv")
+train_data = pd.read_csv("../data/train_nocountry.csv")
 train_data.dropna(inplace=True)
 
 # Feature selection
@@ -31,31 +31,33 @@ selected_features = [
     'Successful Dribbles', 
     'Touches in attacking penalty area', 
     'Tackles', 
+    'Value at beginning of 2022/23 season',
+    
     'Value at beginning of 2020/21 season', 
     'Value at beginning of 2021/22 season', 
-    'Value at beginning of 2022/23 season',
+
     
     # 'Country_encoded',
     
-    'Country_Other',
+    # 'Country_Other',
     
-    'Country_Spain',
-    'Country_France',
-    'Country_Germany',
+    # 'Country_Spain',
+    # 'Country_France',
+    # 'Country_Germany',
     
-    'Country_England',
-    'Country_Italy',
+    # 'Country_England',
+    # 'Country_Italy',
 
-    'Country_Brazil',
+    # 'Country_Brazil',
     
-    'Country_Argentina',
+    # 'Country_Argentina',
     
-    'Country_Portugal',
-    'Country_Netherlands',
+    # 'Country_Portugal',
+    # 'Country_Netherlands',
     
-    'Country_Denmark',
-    'Country_Belgium',
-    'Country_Croatia',
+    # 'Country_Denmark',
+    # 'Country_Belgium',
+    # 'Country_Croatia',
     
     # 'Country_Algeria',
     # 'Country_Ghana',

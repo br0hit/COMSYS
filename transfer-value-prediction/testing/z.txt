@@ -71,7 +71,7 @@ Ensemble Weighting: Instead of equal weights for all models, you can experiment 
 Remember that there is no one-size-fits-all solution, and the effectiveness of these strategies may vary depending on the specific characteristics of your dataset. It's a good practice to experiment with different approaches and evaluate their impact on model performance through careful testing and cross-validation.
 
 
-
+Main Dataset : 
 
 Onehot - 50
 Best Alpha for Elastic Net: 0.01
@@ -112,3 +112,76 @@ Cross-validated Bayesian Ridge RMSE: 10.608021117895245
 
 
 **** Polynomial features doesnt help 
+
+
+2020na : 
+
+Onehot - 38
+λ python ridge_X.py
+Best Alpha: 1
+Cross-validated Ridge RMSE: 10.714369928979997
+
+Onehot - 38
+λ python lasso_X.py
+Best Alpha: 0.01
+Cross-validated Lasso RMSE: 10.710971598936657
+
+Onehot - 38
+Best Alpha for Elastic Net: 0.01
+Best l1_ratio for Elastic Net: 0.9
+Cross-validated Elastic Net RMSE: 10.710651182439593
+Cross-validated Bayesian Ridge RMSE: 10.873431822343045
+
+
+
+2021na : 
+
+Onehot - 20
+λ python ridge_X.py
+Best Alpha: 1
+Cross-validated Ridge RMSE: 10.799316370718703
+
+Onehot - 38
+λ python ridge_X.py
+Best Alpha: 1
+Cross-validated Ridge RMSE: 10.800976493826433
+
+Onehot - 20
+λ python lasso_X.py
+Best Alpha: 0.01
+Cross-validated Lasso RMSE: 10.79650671779503
+
+Onehot - 38
+λ python lasso_X.py
+Best Alpha: 0.01
+Cross-validated Lasso RMSE: 10.795773246543988
+
+Onehot - 20
+λ python elasticnet.py
+Best Alpha for Elastic Net: 0.01
+Best l1_ratio for Elastic Net: 0.9
+Cross-validated Elastic Net RMSE: 10.79685683397558
+Cross-validated Bayesian Ridge RMSE: 10.9456229106651
+
+Onehot - 38
+λ python elasticnet.py
+Best Alpha for Elastic Net: 0.01
+Best l1_ratio for Elastic Net: 0.9
+Cross-validated Elastic Net RMSE: 10.795624160784076
+Cross-validated Bayesian Ridge RMSE: 10.953235270148186
+
+
+country : 
+
+Best Alpha for Elastic Net: 0.01
+Best l1_ratio for Elastic Net: 0.9
+Cross-validated Elastic Net RMSE: 10.413730846357517
+Cross-validated Bayesian Ridge RMSE: 10.582819583387598
+
+λ python lasso_X.py
+Best Alpha: 0.01
+Cross-validated Lasso RMSE: 10.412954107720036
+
+λ python ridge_X.py
+Best Alpha: 1
+Cross-validated Ridge RMSE: 10.417462298309491
