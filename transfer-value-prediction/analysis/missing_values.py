@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Your dataset
-path = '../data/train.csv'
+path = '../data/test.csv'
 
 # Create a DataFrame
 df = pd.read_csv(path)

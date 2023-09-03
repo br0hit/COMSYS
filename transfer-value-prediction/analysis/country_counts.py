@@ -17,6 +17,6 @@ print(country_counts)
 # Create a DataFrame from the country counts
 country_counts = pd.DataFrame({'Country': country_counts.index, 'Count': country_counts.values})
 # Specify the file path where you want to save the counts
-output_file_path = 'country_counts.csv'
+output_file_path = '../results/country_counts.csv'
 # Save the counts to a CSV file
 country_counts.to_csv(output_file_path, index=False)
