@@ -6,12 +6,14 @@ from sklearn.linear_model import Ridge, Lasso
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import ElasticNet, BayesianRidge
 from xgboost import XGBRegressor
+import xgboost as xgb
 
-# Load datasets
+
+# Load datasets 
 train_data = pd.read_csv("../data/train_onehotEncoded20.csv")
 train_data.dropna(inplace=True)
 test_data = pd.read_csv("../data/test_full_onehotEncoded20.csv")
-save_path = "predictions_stacking_nonneg.csv"
+save_path = "predictions_stacking.csv"
 
 # Feature selection
 selected_features = [
@@ -54,12 +56,12 @@ selected_features = [
     
     'Country_Argentina',
     
-    'Country_Portugal',
-    'Country_Netherlands',
+    # 'Country_Portugal',
+    # 'Country_Netherlands',
     
-    'Country_Denmark',
-    'Country_Belgium',
-    'Country_Croatia',
+    # 'Country_Denmark',
+    # 'Country_Belgium',
+    # 'Country_Croatia',
     
     # 'Country_Algeria',
     # 'Country_Ghana',
@@ -81,8 +83,8 @@ X_train = train_data[selected_features]
 y_train = train_data['Value at beginning of 2023/24 season']
 X_test = test_data[selected_features]
 
-# Transform the target variable during training
-y_train_transformed = np.log1p(y_train)
+# # Transform the target variable during training
+# y_train_transformed = np.log1p(y_train)
 
 # Create a list of base models
 base_models = [
@@ -90,12 +92,18 @@ base_models = [
     ('Bayesian', BayesianRidge()),
     ('ridge', Ridge(alpha=1)),
     ('lasso', Lasso(alpha=0.01)),
-    ('xgb', XGBRegressor()),  # Add XGBoost as a base model
-    ('random_forest', RandomForestRegressor())  # Add RandomForest as a base model
+    ('xgb', xgb.XGBRegressor(
+    objective='reg:squarederror',
+    n_estimators=100,
+    max_depth=3,  # You can adjust this hyperparameter for regularization
+    learning_rate=0.1,  # Adjust the learning rate as needed
+    subsample=0.7,  # Adjust subsample to control overfitting
+    colsample_bytree=0.8  # Adjust colsample_bytree to control overfitting
+)),  # Add XGBoost as a base model
 ]
 
 # Create a stacking ensemble with a meta-model
-stacking_model = StackingRegressor(estimators=base_models, final_estimator=Ridge())
+stacking_model = StackingRegressor(estimators=base_models, final_estimator=Ridge(alpha=1))
 
 # Train the stacking ensemble and prediction
 

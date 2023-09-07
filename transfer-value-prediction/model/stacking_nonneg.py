@@ -1,16 +1,18 @@
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
-from xgboost import XGBRegressor
-from sklearn.ensemble import RandomForestRegressor, VotingRegressor
-from sklearn.linear_model import Ridge,Lasso
+from sklearn.ensemble import RandomForestRegressor, StackingRegressor
+from sklearn.linear_model import Ridge, Lasso
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import ElasticNet, BayesianRidge
+from xgboost import XGBRegressor
+import xgboost as xgb
 
 # Load datasets
 train_data = pd.read_csv("../data/train_onehotEncoded20.csv")
 train_data.dropna(inplace=True)
 test_data = pd.read_csv("../data/test_full_onehotEncoded20.csv")
-save_path = "predictions_ensemble.csv"
+save_path = "predictions_stacking_nonneg.csv"
 
 # Feature selection
 selected_features = [
@@ -80,22 +82,36 @@ X_train = train_data[selected_features]
 y_train = train_data['Value at beginning of 2023/24 season']
 X_test = test_data[selected_features]
 
-# Create a list of models for ensemble learning
-models = [
+# Transform the target variable during training
+y_train_transformed = np.log1p(y_train)
+
+# Create a list of base models
+base_models = [
     ('elasticnet', ElasticNet(alpha=0.01, l1_ratio=0.9)),
     ('Bayesian', BayesianRidge()),
-    ('ridge', Ridge(alpha=1)),  # Ridge Regressor model
-    ('lasso', Lasso(alpha=0.01))
+    ('ridge', Ridge(alpha=1)),
+    ('lasso', Lasso(alpha=0.01)),
+    ('xgb', xgb.XGBRegressor(
+    objective='reg:squarederror',
+    n_estimators=100,
+    max_depth=3,  # You can adjust this hyperparameter for regularization
+    learning_rate=0.1,  # Adjust the learning rate as needed
+    subsample=0.7,  # Adjust subsample to control overfitting
+    colsample_bytree=0.8  # Adjust colsample_bytree to control overfitting
+)),  # Add XGBoost as a base model
 ]
 
-# Create an ensemble of models
-ensemble_model = VotingRegressor(models)
+# Create a stacking ensemble with a meta-model
+stacking_model = StackingRegressor(estimators=base_models, final_estimator=Ridge(alpha=1))
 
-# Train the ensemble model
-ensemble_model.fit(X_train, y_train)
+# Train the stacking ensemble and prediction
 
-# Model prediction
-predictions = ensemble_model.predict(X_test)
+# stacking_model.fit(X_train, y_train)
+# predictions = stacking_model.predict(X_test)
+
+stacking_model.fit(X_train, y_train_transformed)
+predictions_transformed = stacking_model.predict(X_test)
+predictions = np.expm1(predictions_transformed)     
 
 # Save predictions to a new file
 output_df = pd.DataFrame({'id': test_data['id'], 'label': predictions})

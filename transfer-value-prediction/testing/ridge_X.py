@@ -3,13 +3,19 @@ import numpy as np
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import Ridge
+from sklearn.feature_selection import RFE
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.preprocessing import StandardScaler
+from sklearn.feature_selection import RFECV
 
 # Load datasets
 train_data = pd.read_csv("../data/train_nocountry.csv")
 train_data.dropna(inplace=True)
+
+# Initialize RFE with the Ridge model and the number of features to select
+num_features_to_select = 19  # You can adjust this number
+
 
 # Feature selection
 # Feature selection
@@ -82,6 +88,9 @@ selected_features = [
 X = train_data[selected_features]
 y = train_data['Value at beginning of 2023/24 season']
 
+# # Calculate y_log_exp
+# y_log_exp = np.exp(np.log(y))
+
 # poly = PolynomialFeatures(degree=2, include_bias=False)  # You can adjust the degree
 # X = poly.fit_transform(X)
 
@@ -111,3 +120,32 @@ cross_val_rmse = np.sqrt(-cross_val_score(best_ridge, X, y, cv=5, scoring='neg_m
 
 print("Best Alpha:", best_alpha)
 print("Cross-validated Ridge RMSE:", cross_val_rmse)
+
+# Create a Ridge regression model with the best alpha
+best_ridge = Ridge(alpha=best_alpha)
+
+
+rfe = RFE(estimator=best_ridge, n_features_to_select= num_features_to_select)
+
+# Fit RFE to your data
+rfe.fit(X, y)
+
+# Get the selected features and their rankings
+selected_features = X.columns[rfe.support_]
+feature_rankings = rfe.ranking_
+
+# Print selected features and their rankings
+print("Selected Features:", selected_features)
+print("Number of features used:", num_features_to_select)
+
+
+# Use the selected features for your data
+X_selected = X[selected_features]
+
+# Create a Ridge regression model with the best alpha
+ridge_with_selected_features = Ridge(alpha=best_alpha)
+
+# Perform cross-validation to calculate RMSE using the selected features
+cross_val_rmse_selected = np.sqrt(-cross_val_score(ridge_with_selected_features, X_selected, y, cv=5, scoring='neg_mean_squared_error').mean())
+
+print("Cross-validated Ridge RMSE with selected features:", cross_val_rmse_selected)
