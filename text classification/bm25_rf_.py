@@ -78,7 +78,7 @@ import numpy as np
 # X_train = docs[:num_lines_file][:]
 # X_test = docs[num_lines_file:][:]
 # print(X_train.shape)
-X_train = bm25[:num_lines_file][:]
+X_train = bm25_[:num_lines_file][:]
 # X_test = bm25_[num_lines_file:][:]
 
 from sklearn.model_selection import train_test_split
@@ -131,7 +131,3 @@ y_pred_test_rf = best_rf.predict(X_test)
 # Evaluate the performance of the best Random Forest model
 print("Best Model - Training Accuracy score:", accuracy_score(y_train, y_pred_train_rf))
 print("Best Model - Testing Accuracy score:", accuracy_score(y_test, y_pred_test_rf))
-
-
-
-
