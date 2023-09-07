@@ -16,57 +16,57 @@ with open('cleaned_text.txt', 'r') as file1:
 
 #bm25-------
 # Initialize the TF-IDF vectorizer
-# from rank_bm25 import BM25Okapi
-# import numpy as np
+from rank_bm25 import BM25Okapi
+import numpy as np
 
-# tokenized_corpus = [doc.split() for doc in corpus]
+tokenized_corpus = [doc.split() for doc in corpus]
 
-# # Initialize BM25Okapi with the tokenized corpus
-# bm25 = BM25Okapi(tokenized_corpus)
+# Initialize BM25Okapi with the tokenized corpus
+bm25 = BM25Okapi(tokenized_corpus)
 
-# # Create a list of queries, where each query is a single document from the corpus
-# queries = tokenized_corpus
+# Create a list of queries, where each query is a single document from the corpus
+queries = tokenized_corpus
 
-# # Calculate BM25 scores for the queries (documents)
-# bm25_scores = [bm25.get_scores(query) for query in queries]
+# Calculate BM25 scores for the queries (documents)
+bm25_scores = [bm25.get_scores(query) for query in queries]
 
-# # Convert the BM25 scores into a NumPy array
-# bm25_matrix = np.array(bm25_scores)
+# Convert the BM25 scores into a NumPy array
+bm25_matrix = np.array(bm25_scores)
 
-# # Convert the BM25 matrix to a NumPy array
-# bm25_ = np.array(bm25_scores)
+# Convert the BM25 matrix to a NumPy array
+bm25_ = np.array(bm25_scores)
 #---------------
 
-import tensorflow as tf
-import tensorflow_hub as hub
+# import tensorflow as tf
+# import tensorflow_hub as hub
 
-# Load a pre-trained BERT model from TensorFlow Hub
-module_url = "https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/2"
-bert_layer = hub.KerasLayer(module_url, trainable=False)  # Set trainable=False to use the pre-trained weights
+# # Load a pre-trained BERT model from TensorFlow Hub
+# module_url = "https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/2"
+# bert_layer = hub.KerasLayer(module_url, trainable=False)  # Set trainable=False to use the pre-trained weights
 
-# Example text data (replace with your own)
-# text_data = ["This is an example sentence.", "Another example sentence."]
+# # Example text data (replace with your own)
+# # text_data = ["This is an example sentence.", "Another example sentence."]
 
-# Tokenize the text data
-input_word_ids, input_mask, input_type_ids = bert_layer(corpus)
+# # Tokenize the text data
+# input_word_ids, input_mask, input_type_ids = bert_layer(corpus)
 
-# Define max_length and pad_length
-max_length = 20  # Set based on your specific needs
-pad_length = max_length - input_word_ids.shape[1]  # Calculate padding length
+# # Define max_length and pad_length
+# max_length = 20  # Set based on your specific needs
+# pad_length = max_length - input_word_ids.shape[1]  # Calculate padding length
 
-# Pad the sequences to match max_length
-input_word_ids = tf.keras.preprocessing.sequence.pad_sequences(input_word_ids, maxlen=max_length, padding='post', truncating='post')
+# # Pad the sequences to match max_length
+# input_word_ids = tf.keras.preprocessing.sequence.pad_sequences(input_word_ids, maxlen=max_length, padding='post', truncating='post')
 
-# Now, input_word_ids contains the token IDs with padding/truncation
-X_train = input_word_ids
+# # Now, input_word_ids contains the token IDs with padding/truncation
+# X_train = input_word_ids
 
 
 # You can now use 'embeddings' as input features for your text classification model.
 
 num_lines_file = len(open('cleaned_text.txt').readlines())
 print(num_lines_file)
-num_lines_file1 = len(open('test_cleaned_text.txt').readlines())
-print(num_lines_file1)
+# num_lines_file1 = len(open('test_cleaned_text.txt').readlines())
+# print(num_lines_file1)
 
 
 #---------------------
@@ -78,7 +78,7 @@ import numpy as np
 # X_train = docs[:num_lines_file][:]
 # X_test = docs[num_lines_file:][:]
 # print(X_train.shape)
-# X_train = encoded_data[:num_lines_file][:]
+X_train = bm25[:num_lines_file][:]
 # X_test = bm25_[num_lines_file:][:]
 
 from sklearn.model_selection import train_test_split
