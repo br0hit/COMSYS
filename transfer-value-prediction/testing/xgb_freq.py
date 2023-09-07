@@ -58,6 +58,9 @@ for _ in range(num_runs):
 
     predictions = model.predict(X_test)
     rmse = np.sqrt(mean_squared_error(y_test, predictions))
+    
+    print(" RMSE:", rmse)
+
     rmse_values.append(rmse)
 
 # Calculate the mean and standard deviation of RMSE across runs
