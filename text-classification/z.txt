@@ -1,0 +1,3 @@
+Multinomial Naive Bayes
+
+Cross-validation mean accuracy: 0.71 ± 0.02 - Logistic 
