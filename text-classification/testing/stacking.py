@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import accuracy_score
-import xgboost as xgb
+from xgboost import XGBClassifier
+from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.ensemble import StackingClassifier
@@ -20,15 +21,17 @@ X = loaded_data['X_train']
 with open('../data/encoded_labels.txt', 'r') as file:
     y = np.array([int(line.strip()) for line in file])
 
-# Create a list of base models
 base_models = [
-    ('RandomForest', RandomForestClassifier(random_state=SEED)),
+    ('RandomForest', RandomForestClassifier(random_state=SEED, n_estimators=100)),
     ('Logistic', LogisticRegression(random_state=SEED)),
     ('GradientBoost', GradientBoostingClassifier(random_state=SEED)),
+    ('XGB', XGBClassifier(random_state=SEED)),
+    ('SVM', SVC(random_state=SEED)) ,   
 ]
 
 # Create a stacking ensemble with a meta-model
-stacking_model = StackingClassifier(estimators=base_models, final_estimator=RandomForestClassifier(random_state=SEED, n_estimators=100))
+stacking_model = StackingClassifier(estimators=base_models, final_estimator= RandomForestClassifier(random_state=SEED, n_estimators=100))
+
 
 # Use cross-validation to estimate the accuracy of the stacking model
 cv_scores = cross_val_score(stacking_model, X, y, cv=5)  # You can adjust the number of folds (cv) as needed

@@ -1,7 +1,7 @@
 id,label
 0,Panic Disorder
 1,Depression
-2,Panic Disorder
+2,Depression
 3,Narcissistic Disorder
 4,Anger/ Intermittent Explosive Disorder
 5,Narcissistic Disorder
@@ -38,9 +38,9 @@ id,label
 36,Depression
 37,Depression
 38,Narcissistic Disorder
-39,Anger/ Intermittent Explosive Disorder
+39,Depression
 40,Narcissistic Disorder
-41,Narcissistic Disorder
+41,Anxiety Disorder
 42,Panic Disorder
 43,Anger/ Intermittent Explosive Disorder
 44,Depression
@@ -68,7 +68,7 @@ id,label
 66,Narcissistic Disorder
 67,Depression
 68,Depression
-69,Panic Disorder
+69,Depression
 70,Narcissistic Disorder
 71,Depression
 72,Depression
@@ -88,7 +88,7 @@ id,label
 86,Anxiety Disorder
 87,Anger/ Intermittent Explosive Disorder
 88,Narcissistic Disorder
-89,Anxiety Disorder
+89,Depression
 90,Anxiety Disorder
 91,Narcissistic Disorder
 92,Panic Disorder
@@ -105,9 +105,9 @@ id,label
 103,Anxiety Disorder
 104,Depression
 105,Narcissistic Disorder
-106,Anxiety Disorder
-107,Depression
-108,Depression
+106,Depression
+107,Anger/ Intermittent Explosive Disorder
+108,Anxiety Disorder
 109,Narcissistic Disorder
 110,Panic Disorder
 111,Depression
@@ -154,7 +154,7 @@ id,label
 152,Anxiety Disorder
 153,Anger/ Intermittent Explosive Disorder
 154,Depression
-155,Anxiety Disorder
+155,Panic Disorder
 156,Depression
 157,Panic Disorder
 158,Anger/ Intermittent Explosive Disorder
@@ -170,7 +170,7 @@ id,label
 168,Anxiety Disorder
 169,Anger/ Intermittent Explosive Disorder
 170,Anger/ Intermittent Explosive Disorder
-171,Depression
+171,Panic Disorder
 172,Anxiety Disorder
 173,Depression
 174,Depression
@@ -191,13 +191,13 @@ id,label
 189,Narcissistic Disorder
 190,Narcissistic Disorder
 191,Depression
-192,Anxiety Disorder
+192,Depression
 193,Panic Disorder
 194,Narcissistic Disorder
 195,Panic Disorder
 196,Panic Disorder
 197,Anger/ Intermittent Explosive Disorder
-198,Panic Disorder
+198,Anger/ Intermittent Explosive Disorder
 199,Depression
 200,Narcissistic Disorder
 201,Panic Disorder
@@ -228,7 +228,7 @@ id,label
 226,Anxiety Disorder
 227,Depression
 228,Anger/ Intermittent Explosive Disorder
-229,Anxiety Disorder
+229,Panic Disorder
 230,Depression
 231,Narcissistic Disorder
 232,Narcissistic Disorder
@@ -241,4 +241,4 @@ id,label
 239,Narcissistic Disorder
 240,Anxiety Disorder
 241,Anxiety Disorder
-242,Depression
+242,Anger/ Intermittent Explosive Disorder

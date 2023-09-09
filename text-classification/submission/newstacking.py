@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
-import xgboost as xgb
+from xgboost import XGBClassifier
+from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import GradientBoostingClassifier,RandomForestClassifier
 from sklearn.ensemble import StackingClassifier
@@ -22,11 +23,12 @@ with open('../data/encoded_labels.txt', 'r') as file:
     y_train = np.array([int(line.strip()) for line in file])
 
 
-# Create a list of base models
 base_models = [
-    ('RandomForest', RandomForestClassifier(random_state=SEED)),
+    ('RandomForest', RandomForestClassifier(random_state=SEED, n_estimators=100)),
     ('Logistic', LogisticRegression(random_state=SEED)),
     ('GradientBoost', GradientBoostingClassifier(random_state=SEED)),
+    ('XGB', XGBClassifier(random_state=SEED)),
+    ('SVM', SVC(random_state=SEED)) ,   
 ]
 
 # Create a stacking ensemble with a meta-model
