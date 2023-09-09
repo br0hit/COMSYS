@@ -1,0 +1,107 @@
+Average Tweet Length: 10.73 words
+Most Common Words:
+to: 410 times
+I'm: 379 times
+my: 303 times
+of: 272 times
+I: 271 times
+a: 252 times
+like: 222 times
+the: 192 times
+in: 134 times
+that: 121 times
+Class Distribution:
+2    208
+3    158
+0    154
+1    153
+4    112
+Name: Label, dtype: int64
+
+
+
+Class 0:
+to: 94 times
+my: 90 times
+I'm: 60 times
+like: 59 times
+I: 58 times
+a: 57 times
+anger: 49 times
+of: 47 times
+emotions: 37 times
+is: 35 times
+
+
+Class 1:
+I'm: 92 times
+of: 77 times
+my: 73 times
+to: 70 times
+a: 59 times
+the: 50 times
+like: 48 times
+in: 37 times
+that: 29 times
+I: 25 times
+
+
+Class 2:
+to: 107 times
+I'm: 85 times
+I: 79 times
+a: 69 times
+like: 54 times
+of: 53 times
+the: 51 times
+in: 36 times
+can: 34 times
+my: 34 times
+
+
+Class 3:
+to: 98 times
+I: 87 times
+my: 70 times
+I'm: 57 times
+of: 48 times
+and: 37 times
+the: 35 times
+a: 32 times
+like: 28 times
+others: 22 times
+
+
+Class 4:
+I'm: 85 times
+of: 47 times
+to: 41 times
+my: 36 times
+a: 35 times
+like: 33 times
+in: 27 times
+the: 22 times
+I: 22 times
+when: 18 times
+
+
+Class 0 Important Words:
+['anger', 'emotions', 'my', 'ways', 'emotional', 'rage', 'tired', 'is', 'to', 'intense']
+Class 1 Important Words:
+['anxiety', 'worry', 'mind', 'thoughts', 'uncertainty', 'of', 'to', 'the', 'worries', 'always']
+Class 2 Important Words:
+['my', 'sadness', 'heavy', 'pain', 'emotions', 'anger', 'just', 'of', 'to', 'don']
+Class 3 Important Words:
+['others', 'success', 'expect', 'attention', 'people', 'achievements', 'greatness', 'exceptional', 'often', 'entitled']
+Class 4 Important Words:
+['panic', 'fear', 'attack', 'body', 'during', 'terrified', 'of', 'there', 'the', 'losing']
+Class 0 Important Words:
+['anger', 'my', 'to', 'emotions', 'like', 'is', 'of', 'the', 'that', 'find']
+Class 1 Important Words:
+['of', 'my', 'the', 'to', 'like', 'in', 'anxiety', 'that', 'mind', 'feel']
+Class 2 Important Words:
+['to', 'the', 'like', 'can', 'it', 'of', 'emotions', 'in', 'feel', 'even']
+Class 3 Important Words:
+['to', 'others', 'my', 'and', 'the', 'of', 'people', 'it', 'expect', 'me']
+Class 4 Important Words:
+['panic', 'of', 'my', 'fear', 'in', 'to', 'like', 'can', 'the', 'attack']
