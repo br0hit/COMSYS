@@ -13,7 +13,7 @@ train_data = pd.read_csv("../data/train_nocountry.csv")
 train_data.dropna(inplace=True)
 
 # Initialize RFE with the Ridge model and the number of features to select
-num_features_to_select = 17  # You can adjust this number
+num_features_to_select = 16  # You can adjust this number
 
 # Feature selection
 # Feature selection

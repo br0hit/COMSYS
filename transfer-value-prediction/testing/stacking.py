@@ -14,15 +14,12 @@ import xgboost as xgb
 train_data = pd.read_csv("../data/train_onehotEncoded20.csv")
 train_data.dropna(inplace=True)
 
-# Initialize RFE with the Ridge model and the number of features to select
-num_features_to_select = 19  # You can adjust this number
-
-
+rs = 42
 # Create a list of base models
 base_models = [
-    ('elasticnet', ElasticNet(alpha=0.01, l1_ratio=0.9)),
-    ('Bayesian', BayesianRidge()),
-    ('ridge', Ridge(alpha=1)),
+    # ('elasticnet', ElasticNet(alpha=0.01, l1_ratio=0.9)),
+    # ('Bayesian', BayesianRidge()),
+    # ('ridge', Ridge(alpha=1)),
     ('lasso', Lasso(alpha=0.01)),
     ('xgb', xgb.XGBRegressor(
     objective='reg:squarederror',
@@ -102,30 +99,50 @@ selected_features = [
 X = train_data[selected_features]
 y = train_data['Value at beginning of 2023/24 season']
 
-# Split data into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # # Transform the target variable during training
 # y_train_transformed = np.log1p(y_train)
 
 # Create a stacking ensemble with a meta-model
-stacking_model = StackingRegressor(estimators=base_models, final_estimator=Ridge(alpha=1))
+stacking_model_ridge = StackingRegressor(estimators=base_models, final_estimator=Ridge(alpha=1))
+stacking_model_lasso = StackingRegressor(estimators=base_models, final_estimator=Lasso(alpha=0.01))
 
 # Train the stacking ensemble and prediction
-
-# stacking_model.fit(X_train, y_train)
-# predictions = stacking_model.predict(X_test)
 
 # stacking_model.fit(X_train, y_train_transformed)
 # predictions_transformed = stacking_model.predict(X_test)
 # predictions = np.expm1(predictions_transformed)     
 
 
-# Perform cross-validation to calculate RMSE
-cross_val_rmse = np.sqrt(-cross_val_score(stacking_model, X, y, cv=5, scoring='neg_mean_squared_error').mean())
+cross_val_rmse_ridge = np.sqrt(-cross_val_score(stacking_model_ridge, X, y, cv=10, scoring='neg_mean_squared_error').mean())
+cross_val_rmse_lasso = np.sqrt(-cross_val_score(stacking_model_lasso, X, y, cv=10, scoring='neg_mean_squared_error').mean())
 
-print("Stacked RMSE on Test Set:", cross_val_rmse)
+# Perform cross-validation to calculate RMSE
+
+print("Stacked RMSE Ridge:", cross_val_rmse_ridge)
+print("Stacked RMSE Lasso:", cross_val_rmse_lasso)
+
 print("Models used : ",base_models)
+
+# Split the data into an 80/20 train/test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=rs)
+
+# Fit the stacking models
+stacking_model_ridge.fit(X_train, y_train)
+stacking_model_lasso.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred_ridge = stacking_model_ridge.predict(X_test)
+y_pred_lasso = stacking_model_lasso.predict(X_test)
+
+# Calculate the RMSE for both models
+rmse_ridge = np.sqrt(mean_squared_error(y_test, y_pred_ridge))
+rmse_lasso = np.sqrt(mean_squared_error(y_test, y_pred_lasso))
+
+print("RMSE for Stacking Model (Ridge):", rmse_ridge)
+print("RMSE for Stacking Model (Lasso):", rmse_lasso)
+
+
 
 # rfe = RFE(estimator=stacking_model, n_features_to_select= num_features_to_select)
 

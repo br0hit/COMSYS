@@ -8,12 +8,11 @@ from sklearn.linear_model import ElasticNet, BayesianRidge
 from xgboost import XGBRegressor
 import xgboost as xgb
 
-
-# Load datasets 
+# Load datasets
 train_data = pd.read_csv("../data/train_onehotEncoded20.csv")
 train_data.dropna(inplace=True)
 test_data = pd.read_csv("../data/test_full_onehotEncoded20.csv")
-save_path = "predictions_stacking.csv"
+save_path = "predictions_stacking_nonneg.csv"
 
 # Feature selection
 selected_features = [
@@ -56,8 +55,8 @@ selected_features = [
     
     'Country_Argentina',
     
-    'Country_Portugal',
-    'Country_Netherlands',
+    # 'Country_Portugal',
+    # 'Country_Netherlands',
     
     # 'Country_Denmark',
     # 'Country_Belgium',
@@ -75,7 +74,7 @@ selected_features = [
 
     # 'Country_Norway',
     # 'Country_Scotland',
-    # 'Country_Switzerland', 
+    # 'Country_Switzerland',
     # 'Country_Turkey',
 ]
 
@@ -83,13 +82,13 @@ X_train = train_data[selected_features]
 y_train = train_data['Value at beginning of 2023/24 season']
 X_test = test_data[selected_features]
 
-# # Transform the target variable during training
-# y_train_transformed = np.log1p(y_train)
+# Transform the target variable during training
+y_train_transformed = np.log1p(y_train)
 
 # Create a list of base models
 base_models = [
     ('elasticnet', ElasticNet(alpha=0.01, l1_ratio=0.9)),
-    # ('Bayesian', BayesianRidge()),
+    ('Bayesian', BayesianRidge()),
     ('ridge', Ridge(alpha=1)),
     ('lasso', Lasso(alpha=0.01)),
     ('xgb', xgb.XGBRegressor(
@@ -107,12 +106,12 @@ stacking_model = StackingRegressor(estimators=base_models, final_estimator=Ridge
 
 # Train the stacking ensemble and prediction
 
-stacking_model.fit(X_train, y_train)
-predictions = stacking_model.predict(X_test)
+# stacking_model.fit(X_train, y_train)
+# predictions = stacking_model.predict(X_test)
 
-# stacking_model.fit(X_train, y_train_transformed)
-# predictions_transformed = stacking_model.predict(X_test)
-# predictions = np.expm1(predictions_transformed)     
+stacking_model.fit(X_train, y_train_transformed)
+predictions_transformed = stacking_model.predict(X_test)
+predictions = np.expm1(predictions_transformed)     
 
 # Save predictions to a new file
 output_df = pd.DataFrame({'id': test_data['id'], 'label': predictions})

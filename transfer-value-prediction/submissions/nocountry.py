@@ -13,7 +13,7 @@ train_data.dropna(inplace=True)
 test_data = pd.read_csv("../data/test_nocountry.csv")
 save_path = "predictions_stacking_countrymissing.csv"
 
-# Feature selection
+# # Feature selection
 selected_features = ['Aerial Duels won', 'Age', 'Assists', 'Attacking options created',
        'Attempted Passes', 'Blocks', 'Interceptions', 'Open Play Goals',
        'Open Play Expected Goals', 'Progressive Passes Rec',
@@ -21,6 +21,8 @@ selected_features = ['Aerial Duels won', 'Age', 'Assists', 'Attacking options cr
        'Tackles', 'Value at beginning of 2022/23 season',
        'Value at beginning of 2020/21 season',
        'Value at beginning of 2021/22 season']
+
+
 
 X_train = train_data[selected_features]
 y_train = train_data['Value at beginning of 2023/24 season']

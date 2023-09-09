@@ -59,9 +59,9 @@ selected_features = [
     'Country_Portugal',
     'Country_Netherlands',
     
-    # 'Country_Denmark',
-    # 'Country_Belgium',
-    # 'Country_Croatia',
+    'Country_Denmark',
+    'Country_Belgium',
+    'Country_Croatia',
     
     # 'Country_Algeria',
     # 'Country_Ghana',
@@ -75,7 +75,7 @@ selected_features = [
 
     # 'Country_Norway',
     # 'Country_Scotland',
-    # 'Country_Switzerland', 
+    # 'Country_Switzerland',
     # 'Country_Turkey',
 ]
 
@@ -89,7 +89,7 @@ X_test = test_data[selected_features]
 # Create a list of base models
 base_models = [
     ('elasticnet', ElasticNet(alpha=0.01, l1_ratio=0.9)),
-    # ('Bayesian', BayesianRidge()),
+    ('Bayesian', BayesianRidge()),
     ('ridge', Ridge(alpha=1)),
     ('lasso', Lasso(alpha=0.01)),
     ('xgb', xgb.XGBRegressor(
