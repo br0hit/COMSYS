@@ -29,7 +29,7 @@ plt.title('Distribution of Word Frequencies')
 plt.show()
 
 # Find the most common words
-most_common_words = word_freq.most_common(10)
+most_common_words = word_freq.most_common(100)
 print("Most Common Words:")
 for word, freq in most_common_words:
     print(f"{word}: {freq} times")

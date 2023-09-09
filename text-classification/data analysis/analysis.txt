@@ -1,4 +1,7 @@
 Average Tweet Length: 10.73 words
+
+
+
 Most Common Words:
 to: 410 times
 I'm: 379 times
@@ -10,13 +13,107 @@ like: 222 times
 the: 192 times
 in: 134 times
 that: 121 times
+can: 110 times
+and: 99 times
+feel: 99 times
+is: 87 times
+when: 85 times
+Trying: 84 times
+Feeling: 84 times
+find: 83 times
+The: 81 times
+It's: 76 times
+emotions: 66 times
+be: 62 times
+on: 56 times
+hard: 52 times
+me: 52 times
+for: 51 times
+me.: 50 times
+anger: 49 times
+with: 45 times
+Even: 43 times
+can't: 42 times
+even: 41 times
+constantly: 38 times
+from: 35 times
+mind: 31 times
+own: 30 times
+emotional: 30 times
+way: 30 times
+are: 28 times
+feels: 27 times
+could: 27 times
+avoiding: 26 times
+ways: 26 times
+others.: 26 times
+others: 25 times
+fear: 25 times
+being: 24 times
+struggling: 24 times
+wish: 24 times
+moments: 24 times
+without: 24 times
+it: 23 times
+navigate: 22 times
+people: 22 times
+constant: 21 times
+myself: 21 times
+feeling: 21 times
+by: 21 times
+thoughts: 21 times
+because: 21 times
+an: 21 times
+My: 20 times
+situations: 20 times
+don't: 20 times
+worried: 19 times
+it's: 18 times
+not: 18 times
+always: 18 times
+through: 18 times
+explain: 18 times
+storm: 18 times
+inside: 18 times
+describe: 17 times
+about: 17 times
+thoughts.: 17 times
+intense: 17 times
+challenge: 16 times
+expect: 16 times
+afraid: 16 times
+things: 16 times
+world: 16 times
+if: 16 times
+make: 16 times
+panic: 16 times
+want: 15 times
+often: 15 times
+any: 15 times
+trapped: 14 timesSend a message
+weight: 14 times
+that's: 14 times
+losing: 14 times
+trying: 14 times
+out: 14 times
+than: 14 times
+or: 14 times
+struggle: 14 times
+escape: 13 times
+might: 13 times
+panic.: 13 times
+control.: 13 times
+
+
+
+
+
 Class Distribution:
 2    208
 3    158
 0    154
 1    153
 4    112
-Name: Label, dtype: int64
 
 
 
@@ -85,23 +182,18 @@ I: 22 times
 when: 18 times
 
 
+---
 Class 0 Important Words:
-['anger', 'emotions', 'my', 'ways', 'emotional', 'rage', 'tired', 'is', 'to', 'intense']
+['anger', 'emotions', 'emotional', 'rage', 'tired', 'intense']
+
 Class 1 Important Words:
-['anxiety', 'worry', 'mind', 'thoughts', 'uncertainty', 'of', 'to', 'the', 'worries', 'always']
+['anxiety', 'worry', 'mind', 'thoughts', 'uncertainty', 'worries', 'always']
+
 Class 2 Important Words:
-['my', 'sadness', 'heavy', 'pain', 'emotions', 'anger', 'just', 'of', 'to', 'don']
+[ 'sadness', 'heavy', 'pain', 'emotions', 'anger', 'even']
+
 Class 3 Important Words:
 ['others', 'success', 'expect', 'attention', 'people', 'achievements', 'greatness', 'exceptional', 'often', 'entitled']
+
 Class 4 Important Words:
-['panic', 'fear', 'attack', 'body', 'during', 'terrified', 'of', 'there', 'the', 'losing']
-Class 0 Important Words:
-['anger', 'my', 'to', 'emotions', 'like', 'is', 'of', 'the', 'that', 'find']
-Class 1 Important Words:
-['of', 'my', 'the', 'to', 'like', 'in', 'anxiety', 'that', 'mind', 'feel']
-Class 2 Important Words:
-['to', 'the', 'like', 'can', 'it', 'of', 'emotions', 'in', 'feel', 'even']
-Class 3 Important Words:
-['to', 'others', 'my', 'and', 'the', 'of', 'people', 'it', 'expect', 'me']
-Class 4 Important Words:
-['panic', 'of', 'my', 'fear', 'in', 'to', 'like', 'can', 'the', 'attack']
+['panic', 'fear', 'attack', 'body', 'during', 'terrified', 'losing']

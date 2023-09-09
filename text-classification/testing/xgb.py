@@ -4,7 +4,7 @@ from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import train_test_split
 
-file_name = '../preprocessing/vectorization/bm25_vect.npz'
+file_name = '../preprocessing/vectorization/bm25_vect_with_custom.npz'
 
 # Load the .npz file
 loaded_data = np.load(file_name)
