@@ -1,3 +1,39 @@
-Multinomial Naive Bayes
+-----bm25 vectorization, prev cleaning----
 
-Cross-validation mean accuracy: 0.71 ± 0.02 - Logistic  
+Logistic 
+Cross-validation mean accuracy: 0.71 ± 0.02  
+Cross-validation mean precision: 0.73 ± 0.02
+Cross-validation mean recall: 0.72 ± 0.03
+Cross-validation mean F1-score: 0.72 ± 0.03
+Hyper parameters LogisticRegression(C=0.01, solver='liblinear')
+
+xgb.py
+cross-validation mean accuracy: 0.69 ± 0.01
+Cross-validation mean precision: 0.71 ± 0.01
+Cross-validation mean recall: 0.69 ± 0.02
+Cross-validation mean F1-score: 0.70 ± 0.01
+
+rf.py 
+Cross-validation mean accuracy: 0.66 ± 0.03
+Cross-validation mean precision: 0.69 ± 0.03
+Cross-validation mean recall: 0.66 ± 0.03
+Cross-validation mean F1-score: 0.66 ± 0.02
+
+naive_bayes.py 
+Cross-validation mean accuracy: 0.60 ± 0.03
+Cross-validation mean precision: 0.60 ± 0.03
+Cross-validation mean recall: 0.61 ± 0.04
+Cross-validation mean F1-score: 0.60 ± 0.03
+Hyperparameters MultinomialNB(alpha=0.1)
+
+svm.py 
+Cross-validation mean accuracy: 0.70 ± 0.02
+Cross-validation mean precision: 0.73 ± 0.02
+Cross-validation mean recall: 0.70 ± 0.02
+Cross-validation mean F1-score: 0.71 ± 0.02
+Hyperparameters SVC(C=10)
+
+
+----- 
+
+
