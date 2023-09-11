@@ -48,3 +48,12 @@ Cross-validation mean precision: 0.72 ± 0.04
 Cross-validation mean recall: 0.70 ± 0.02
 Cross-validation mean F1-score: 0.71 ± 0.03
 
+
+logistic_new : 
+
+Best Hyperparameters: {'C': 0.001, 'class_weight': 'balanced', 'dual': False, 'max_iter': 100, 'multi_class': 'ovr', 'penalty': 'l2', 'solver': 'lbfgs'}
+Accuracy on Test Set: 0.732484076433121
+
+rf_new.py
+Best Hyperparameters: {'bootstrap': False, 'class_weight': None, 'max_depth': None, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
+Accuracy on Test Set: 0.6560509554140127

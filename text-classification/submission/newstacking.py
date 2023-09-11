@@ -9,6 +9,7 @@ from sklearn.ensemble import GradientBoostingClassifier,RandomForestClassifier
 from sklearn.ensemble import StackingClassifier
 
 SEED=123
+save_path = 'output_file_rf_tuned_initialfinal.csv'
 
 file_name = '../preprocessing/vectorization/bm25_vect_with_custom1.npz'
 
@@ -24,15 +25,15 @@ with open('../data/encoded_labels.txt', 'r') as file:
 
 
 base_models = [
-    ('RandomForest', RandomForestClassifier(random_state=SEED, n_estimators=100)),
-    ('Logistic', LogisticRegression(random_state=SEED)),
+    ('RandomForest', RandomForestClassifier(bootstrap=False,class_weight=None,max_depth=None,min_samples_leaf=1,min_samples_split=5,n_estimators=200)),
+    ('Logistic', LogisticRegression(C=0.001,class_weight='balanced',dual=False,max_iter=100,multi_class='ovr',penalty='l2',solver='lbfgs')),
     ('GradientBoost', GradientBoostingClassifier(random_state=SEED)),
     ('XGB', XGBClassifier(random_state=SEED)),
     ('SVM', SVC(random_state=SEED)) ,   
 ]
 
 # Create a stacking ensemble with a meta-model
-stacking_model = StackingClassifier(estimators=base_models, final_estimator=RandomForestClassifier(random_state=SEED, n_estimators=100))
+stacking_model = StackingClassifier(estimators=base_models, final_estimator=RandomForestClassifier(bootstrap=False,class_weight=None,max_depth=None,min_samples_leaf=1,min_samples_split=5,n_estimators=200))
 
 # Train the stacking ensemble and prediction
 
@@ -57,7 +58,7 @@ encoded_labels = [label_encoding[label] for label in y_pred_test]
 data = list(zip(ids, encoded_labels))
 
 # Save the data to a text file with 'id' and 'label' columns
-with open('output_file_ff.csv', 'w') as file:
+with open(save_path, 'w') as file:
     file.write('id,label\n')  # Write header
     for row in data:
         file.write(f'{row[0]},{row[1]}\n')  # Write id and label separated by a comma
